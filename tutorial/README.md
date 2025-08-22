@@ -42,14 +42,20 @@ go test -v .
 
 ### Run Benchmarks
 ```bash
+# Copy file to have _test.go suffix (required for benchmarks)
+cp benchmarks.go benchmarks_test.go
+
 # Run all benchmarks
-go test -bench=. .
+go test -bench=. benchmarks_test.go
 
 # Run specific benchmark
-go test -bench=BenchmarkStringConcatenation .
+go test -bench=BenchmarkStringConcatenation benchmarks_test.go
 
 # Run with memory info
-go test -bench=. . -benchmem
+go test -bench=. benchmarks_test.go -benchmem
+
+# Clean up
+rm benchmarks_test.go
 ```
 
 ## 🔗 Concurrency Examples
@@ -91,6 +97,13 @@ func BenchmarkFunction(b *testing.B) {
 }
 ```
 
+**Example Results:**
+```
+BenchmarkStringConcatenation/Strings_Join-8    24150760    44.30 ns/op
+BenchmarkStringConcatenation/Strings_Builder-8  14668633    80.19 ns/op
+BenchmarkStringConcatenation/String_Plus-8     11230993   116.6 ns/op
+```
+
 ## 🎯 Key Commands
 
 ```bash
@@ -100,11 +113,16 @@ go build .
 # Run specific files
 go run file1.go file2.go
 
+# Run all tutorials
+go run .
+
 # Test specific function
 go test -run TestFunctionName
 
-# Benchmark with memory
-go test -bench=. -benchmem
+# Run benchmarks (requires _test.go suffix)
+cp benchmarks.go benchmarks_test.go
+go test -bench=BenchmarkName benchmarks_test.go
+rm benchmarks_test.go
 
 # Format code
 go fmt .
@@ -126,6 +144,7 @@ go vet .
 - Include edge cases and error conditions
 - Use descriptive test names
 - Benchmark performance-critical code
+- Use `_test.go` suffix for benchmark files
 
 ### Channels
 - Close channels when done sending
@@ -160,12 +179,28 @@ tutorial/
 7. **Test with `table_driven_tests.go`** - Testing
 8. **Optimize with `benchmarks.go`** - Performance
 
+## 📊 Benchmark Examples
+
+### String Concatenation Performance
+- `strings.Join`: Fastest (44.30 ns/op)
+- `strings.Builder`: 2x faster than `+` (80.19 ns/op)
+- `+` concatenation: Slowest (116.6 ns/op)
+
+### Memory Allocation
+- **Reuse allocation**: 3x faster than new allocation
+- **Memory reuse**: Eliminates allocations (0 B/op vs 8192 B/op)
+
+### Concurrency vs Sequential
+- **Sequential**: Often faster for simple operations
+- **Concurrency overhead**: Can make simple tasks slower
+
 ## 🚨 Common Issues
 
 - **Undefined function**: Run with `go run .` to include all files
 - **Test not found**: Use `go test -run TestName`
-- **Benchmark not found**: Use `go test -bench=BenchmarkName`
+- **Benchmark not found**: Copy file to `_test.go` suffix first
 - **Import errors**: Check `go.mod` and run `go mod tidy`
+- **"no test files" error**: Use `_test.go` suffix for benchmark files
 
 ## 📚 Resources
 
