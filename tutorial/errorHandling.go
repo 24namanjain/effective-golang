@@ -1,11 +1,15 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func errorHandlingDemo() {
 	// Example 1: Basic error handling with custom error
 	result, err := divide(10, 0)
 	if err != nil {
+		// Error has context from divide()
 		fmt.Println("Error occurred:", err)
 	} else {
 		fmt.Println("Result:", result)
@@ -14,6 +18,7 @@ func errorHandlingDemo() {
 	// Example 2: Error handling with file open (simulated)
 	err = doSomethingThatFails()
 	if err != nil {
+		// Error has context from doSomethingThatFails()
 		fmt.Println("Operation failed:", err)
 	} else {
 		fmt.Println("Operation succeeded")
@@ -23,12 +28,18 @@ func errorHandlingDemo() {
 // divide returns the result of a / b, or an error if b == 0
 func divide(a, b int) (int, error) {
 	if b == 0 {
-		return 0, fmt.Errorf("cannot divide by zero")
+		// divide(10, 0): invalid argument
+		// os.ErrInvalid is a constant error that is returned when an invalid argument is passed to a function
+		// %w is a placeholder for the error that is returned
+		// Wrap the error with context
+		return 0, fmt.Errorf("divide(%d, %d): %w", a, b, os.ErrInvalid)
 	}
 	return a / b, nil
 }
 
 // doSomethingThatFails simulates a function that returns an error
 func doSomethingThatFails() error {
-	return fmt.Errorf("something went wrong")
+	baseErr := fmt.Errorf("something went wrong")
+	// Wrap with higher-level context
+	return fmt.Errorf("doSomethingThatFails: %w", baseErr)
 }
