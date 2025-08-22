@@ -376,6 +376,9 @@ func concurrencyAndGoroutinesTutorial() {
 	workerPoolDemo()
 	advancedWorkerPoolDemo()
 
+	// 5. Rate-limited channels (from channels.go)
+	channelsDemo()
+
 	fmt.Println("\n✅ Concurrency tutorial completed!")
 	fmt.Println("Key takeaways:")
 	fmt.Println("- Always use context.Context for cancellation and deadlines")
