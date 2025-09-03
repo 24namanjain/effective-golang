@@ -2,6 +2,8 @@ package main
 
 import "fmt"
 
+const PI = 3.14
+
 func main() {
 
 	var helloWorld = "Hello! world"
@@ -27,6 +29,13 @@ func main() {
 
 	name = getName()
 	sayHello(name)
+
+	age := 10
+	address := "India"
+
+	fmt.Printf("%s is %d years old and lives in %s\n", name, age, address)
+
+	fmt.Printf("Pi is %f", PI)
 
 }
 
