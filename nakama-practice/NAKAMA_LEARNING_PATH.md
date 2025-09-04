@@ -31,8 +31,8 @@
 - [ ] Add validation + errors  
 
 **Hands-on Lab A:**  
-- [ ] `submit_profile` RPC → stores player profile  
-- [ ] `get_profile` RPC → reads player profile  
+- [ ] `submit_player_stats` RPC → stores cricket player statistics  
+- [ ] `get_player_stats` RPC → reads player performance data  
 
 **Milestone:** First custom RPC working.  
 
