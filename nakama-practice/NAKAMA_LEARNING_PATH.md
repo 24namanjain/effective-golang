@@ -1,13 +1,13 @@
-# ✅ Nakama Learning Path — Mini Battle Arena Edition
+# ✅ Nakama Learning Path — Cricket Matchmaking System Edition
 
-**Audience:** Developers new to Nakama who want a practical, end-to-end path from zero to production-ready features.  
-**Time commitment:** 2–4 weeks (1–2 hours/day)  
-**Prerequisites:** Basic Go or TypeScript/JavaScript, Docker, SQL fundamentals.  
+**Audience:** Developers new to Nakama implementing a cricket matchmaking system.  
+**Time commitment:** 2–3 weeks (1–2 hours/day)  
+**Prerequisites:** Basic Go, Docker, SQL fundamentals.  
 
 ---
 
 ## Phase 0 — Environment Setup (Day 0)
-- [x] Install: Docker Desktop, Go (or Node), REST client, WebSocket client  
+- [x] Install: Docker Desktop, Go, REST client, WebSocket client  
 - [x] Clone starter repo  
 - [x] Start Nakama + Postgres via docker-compose  
 - [x] Verify health (`/healthz`, Console)  
@@ -16,173 +16,310 @@
 
 ---
 
-## Phase 1 — Core Mental Model (Day 1)
-- [x] Understand Nakama as a backend (not a game engine)  
-- [x] Learn building blocks: RPCs, Matches, Matchmaker, Storage, Leaderboards, Social, Realtime Socket  
+## Phase 1 — Nakama Fundamentals & First Steps (Days 1-2)
+- [ ] Understand Nakama as a backend (not a game engine)
+- [ ] Learn core building blocks: RPCs, Storage, Authentication
+- [ ] Explore basic Nakama concepts and architecture
+- [ ] Build your first "Hello World" RPC
 
-**Milestone:** Map Mini Battle Arena features → Nakama primitives.  
+**Hands-on Lab A:**
+- [ ] Create simple RPC (`echo` function)
+- [ ] Test basic storage operations
+- [ ] Explore Nakama console and logs
+- [ ] Understand the runtime module concept
 
----
+**Key Concepts:**
+- [ ] Runtime modules and how they work
+- [ ] RPC functions and HTTP endpoints
+- [ ] Basic storage operations
+- [ ] Nakama's event-driven architecture
 
-## Phase 2 — First RPC (Day 1)
-- [ ] Implement trivial RPC (`echo`)  
-- [ ] Compile runtime module (Go or JS)  
-- [ ] Register and call RPC via HTTP  
-- [ ] Add validation + errors  
-
-**Hands-on Lab A:**  
-- [ ] `submit_player_stats` RPC → stores cricket player statistics  
-- [ ] `get_player_stats` RPC → reads player performance data  
-
-**Milestone:** First custom RPC working.  
-
----
-
-## Phase 3 — Storage Engine Deep Dive (Days 2–3)
-- [ ] Learn collections, keys, versioning, permissions  
-- [ ] Explore upserts, conditional writes, batch ops  
-- [ ] Design storage for profiles, settings, battle history  
-
-**Hands-on Lab B:**  
-- [ ] `PUT /settings` RPC → save preferences  
-- [ ] `GET /settings` RPC → fetch preferences  
-- [ ] Add schema validation  
-
-**Milestone:** Player data safely stored/retrieved.  
+**Milestone:** Comfortable with basic Nakama operations and concepts.  
 
 ---
 
-## Phase 4 — Leaderboards (Days 3–4)
-- [ ] Learn leaderboard concepts: sort orders, reset schedules  
-- [ ] Practice with `LeaderboardCreate`, `LeaderboardRecordWrite`, `LeaderboardRecordsList`  
+## Phase 2 — Storage & Data Management (Days 2-3)
+- [ ] Deep dive into Nakama's storage engine
+- [ ] Learn collections, keys, versioning, permissions
+- [ ] Design data schemas for cricket teams and players
+- [ ] Practice with real storage operations
 
-**Hands-on Lab C:**  
-- [ ] Create `daily_wins` leaderboard (daily reset)  
-- [ ] `submit_score` RPC → validates & writes record  
-- [ ] `top10_scores` RPC → fetches leaderboard  
+**Hands-on Lab B:**
+- [ ] Create user profiles with `WriteStorageObjects`
+- [ ] Read and update player data with `ReadStorageObjects`
+- [ ] Design JSON schemas for flexible data
+- [ ] Test storage permissions and access control
 
-**Milestone:** Battle winners appear on leaderboard.  
+**Storage Concepts:**
+- [ ] Collections and keys structure
+- [ ] JSON object storage and validation
+- [ ] Per-user vs. shared data strategies
+- [ ] When to use Nakama vs. external databases
 
----
-
-## Phase 5 — Matchmaker & Matches (Days 4–6)
-- [ ] Learn matchmaker basics (tickets, properties)  
-- [ ] Explore authoritative match loop (init, join, loop, leave, terminate)  
-- [ ] Persistence: save results, not full state  
-
-**Hands-on Lab D:**  
-- [ ] Matchmaker RPC wrapper (add/cancel queue)  
-- [ ] Authoritative match:  
-  - [ ] Track joins/leaves  
-  - [ ] Broadcast tick every 5s  
-  - [ ] Handle “attack/defend” actions  
-  - [ ] End after 30s → decide winner → save result  
-
-**Milestone:** Players complete Mini Battle Arena matches.  
+**Milestone:** Confident with Nakama storage and data modeling.  
 
 ---
 
-## Phase 6 — Authentication & Social (Days 6–7)
-- [ ] Implement Device login  
-- [ ] Understand friend graph: add, accept, block  
-- [ ] Explore chat & groups  
+## Phase 3 — Authentication & User Management (Days 3-4)
+- [ ] Implement device login and user authentication
+- [ ] Learn about user sessions and management
+- [ ] Create user profiles and preferences
+- [ ] Understand Nakama's user lifecycle
 
-**Hands-on Lab E:**  
-- [ ] Device login flow  
-- [ ] Friend request → chat channel  
+**Hands-on Lab C:**
+- [ ] Implement device authentication flow
+- [ ] Create user profile management RPCs
+- [ ] Handle user preferences and settings
+- [ ] Test user session management
 
-**Milestone:** Players authenticate, add friends, and chat.  
+**Authentication Features:**
+- [ ] Device ID authentication
+- [ ] User profile creation and updates
+- [ ] Session management and validation
+- [ ] User data privacy and permissions
 
----
-
-## Phase 7 — Events, Hooks, and Observability (Days 7–9)
-- [ ] Learn before/after hooks  
-- [ ] Setup Prometheus metrics + Grafana dashboards  
-- [ ] Enable tracing with OpenTelemetry  
-
-**Hands-on Lab F:**  
-- [ ] `AfterAuthenticate` hook → log streak + send notification  
-- [ ] Export Prometheus metrics  
-- [ ] Create Grafana dashboard (players online, matches played)  
-
-**Milestone:** Observe and debug Mini Battle Arena.  
+**Milestone:** Users can authenticate and manage profiles.  
 
 ---
 
-## Phase 8 — Deployment & Scale (Days 9–12)
-- [ ] Run Nakama stateless behind LB  
-- [ ] Setup sticky sessions / session handoff  
-- [ ] Use Postgres replica, Redis for caching  
-- [ ] Practice migrations + rollout strategies  
+## Phase 4 — Real-time Communication (Days 4-5)
+- [ ] Learn WebSocket connections and channels
+- [ ] Implement real-time messaging between clients
+- [ ] Create notification systems
+- [ ] Handle presence and status updates
 
-**Hands-on Lab G:**  
-- [ ] Containerize server module  
-- [ ] Deploy to kind/minikube  
-- [ ] Setup autoscaling + liveness/readiness probes  
+**Hands-on Lab D:**
+- [ ] Set up WebSocket connections
+- [ ] Create chat channels for teams
+- [ ] Implement presence tracking
+- [ ] Build real-time notification system
 
-**Milestone:** Backend scales safely in cluster.  
+**Real-time Features:**
+- [ ] WebSocket connection management
+- [ ] Channel-based messaging
+- [ ] Presence and status tracking
+- [ ] Real-time notifications
 
----
-
-## Phase 9 — Security & Hardening (Days 12–14)
-- [ ] Manage secrets + rotate keys  
-- [ ] Validate inputs server-side  
-- [ ] Add rate-limiting + abuse detection  
-- [ ] Consider GDPR/PII + data retention  
-
-**Hands-on Lab H:**  
-- [ ] Add rate-limit to `submit_score` RPC  
-- [ ] Rotate admin/console credentials  
-
-**Milestone:** Mini Battle Arena backend hardened.  
+**Milestone:** Real-time communication working between clients.  
 
 ---
 
-## Capstone Project — *Mini Battle Arena v1* (2–3 days)
-- [ ] Device login → profile setup  
-- [ ] Queue in matchmaking → play battle  
-- [ ] Match ends → store result  
-- [ ] Update leaderboard  
-- [ ] Invite friend → chat  
-- [ ] Notify rank-up  
+## Phase 5 — Introduction to Matchmaking (Days 5-6)
+- [ ] Learn Nakama's matchmaker concepts
+- [ ] Understand how `AddMatchmaker` works
+- [ ] Explore basic filtering and properties
+- [ ] Build simple matchmaking flow
+
+**Hands-on Lab E:**
+- [ ] Create basic matchmaker with filters
+- [ ] Test `AddMatchmaker` with simple properties
+- [ ] Implement basic match proposal system
+- [ ] Handle match acceptance/rejection
+
+**Matchmaking Basics:**
+- [ ] How Nakama's matchmaker works
+- [ ] Filtering and property matching
+- [ ] Match proposal and acceptance flow
+- [ ] Basic match state management
+
+**Milestone:** Basic matchmaking functionality working.  
+
+---
+
+## Phase 6 — Advanced Matchmaking & Pools (Days 6-8)
+- [ ] Design pool management system
+- [ ] Implement MMR-based team matching
+- [ ] Create region-based filtering
+- [ ] Build match acceptance workflow
+
+**Hands-on Lab F:**
+- [ ] Design pool data structures
+- [ ] Implement MMR calculation algorithms
+- [ ] Create region-based matching logic
+- [ ] Build team acceptance flow
+
+**Advanced Features:**
+- [ ] Pool creation and management
+- [ ] MMR algorithms and rating systems
+- [ ] Region-based team matching
+- [ ] Complex matchmaking logic
+
+**Milestone:** Advanced matchmaking with pools and MMR working.  
+
+---
+
+## Phase 7 — External Integrations & Research (Days 8-9)
+- [ ] Research GameLift integration possibilities
+- [ ] Explore external PostgreSQL for complex queries
+- [ ] Document integration requirements
+- [ ] Plan architecture for external services
+
+**Research Areas:**
+- [ ] How Nakama runtime modules call external APIs
+- [ ] External database integration strategies
+- [ ] GameLift integration challenges
+- [ ] Architecture for complex business logic
+
+**Documentation:**
+- [ ] Integration architecture diagrams
+- [ ] API contract specifications
+- [ ] External service requirements
+- [ ] Performance and scaling considerations
+
+**Milestone:** Clear understanding of external integration needs.  
+
+---
+
+## Phase 8 — Client Integration & Polish (Days 9-10)
+- [ ] Design client-server communication protocols
+- [ ] Implement reconnection handling
+- [ ] Create user-friendly error handling
+- [ ] Polish the overall user experience
+
+**Client Features:**
+- [ ] Message format standards
+- [ ] Error handling and user feedback
+- [ ] Reconnection and state recovery
+- [ ] UI flow optimization
+
+**User Experience:**
+- [ ] Intuitive matchmaking flow
+- [ ] Clear status updates and notifications
+- [ ] Smooth error recovery
+- [ ] Responsive real-time updates
+
+**Milestone:** Polished client experience with robust error handling.  
+
+---
+
+## Phase 9 — Testing & Edge Cases (Days 10-11)
+- [ ] Design comprehensive test suites
+- [ ] Handle edge cases and error scenarios
+- [ ] Test reconnection and failure scenarios
+- [ ] Plan for production deployment
+
+**Testing Strategy:**
+- [ ] Unit tests for core logic
+- [ ] Integration tests with Nakama
+- [ ] Edge case testing (disconnections, failures)
+- [ ] Performance testing considerations
+
+**Edge Cases:**
+- [ ] Network disconnections
+- [ ] Partial team scenarios
+- [ ] System failures and recovery
+- [ ] Performance under load
+
+**Milestone:** Robust system with comprehensive testing.  
+
+---
+
+## Phase 10 — Observability & Operations (Days 11-12)
+- [ ] Explore Nakama's built-in monitoring
+- [ ] Plan custom metrics and logging
+- [ ] Design operational dashboards
+- [ ] Document operational procedures
+
+**Monitoring & Logging:**
+- [ ] Nakama's Prometheus endpoints
+- [ ] Custom metrics for cricket events
+- [ ] Logging strategies and aggregation
+- [ ] Operational dashboards
+
+**Operations:**
+- [ ] Health monitoring and alerts
+- [ ] Performance tracking
+- [ ] Error rate monitoring
+- [ ] Capacity planning
+
+**Milestone:** Clear observability strategy and operational plan.  
+
+---
+
+## Capstone Project — *Cricket Matchmaking System v1* (2–3 days)
+- [ ] End-to-end matchmaking flow
+- [ ] Team registration and pool management
+- [ ] MMR-based matching with region filtering
+- [ ] Real-time updates and notifications
+- [ ] Error handling and edge cases
+
+**Complete Flow:**
+- [ ] User authentication and profile setup
+- [ ] Team creation and pool assignment
+- [ ] Matchmaking with MMR and region filtering
+- [ ] Match proposal and acceptance
+- [ ] Real-time status updates throughout
 
 **Deliverables:**  
-- [ ] Server module code + Docker manifest  
-- [ ] Postman/Insomnia collection  
-- [ ] Grafana dashboard JSON  
-- [ ] Runbook for troubleshooting  
+- [ ] Complete matchmaking service
+- [ ] API documentation and client examples
+- [ ] Test suite and deployment guides
+- [ ] Architecture documentation
 
-**Milestone:** End-to-end Mini Battle Arena backend complete.  
+**Milestone:** Production-ready cricket matchmaking system.  
+
+---
+
+## Implementation Notes & Learning Balance
+
+### **Nakama Fundamentals (Phases 1-4):**
+- [ ] Core concepts and architecture
+- [ ] Storage and data management
+- [ ] Authentication and user management
+- [ ] Real-time communication
+
+### **Matchmaking Specific (Phases 5-6):**
+- [ ] Nakama matchmaker concepts
+- [ ] Pool and MMR systems
+- [ ] Team-based matching logic
+
+### **Advanced Topics (Phases 7-10):**
+- [ ] External integrations
+- [ ] Testing and edge cases
+- [ ] Observability and operations
+
+### **What You'll Learn:**
+- [ ] **Nakama Basics:** RPCs, Storage, WebSockets, Authentication
+- [ ] **Matchmaking:** How to use Nakama's built-in features
+- [ ] **Custom Logic:** Building business-specific functionality
+- [ ] **Integration:** Connecting with external services
+- [ ] **Production:** Testing, monitoring, and deployment
 
 ---
 
 ## Daily 30-Minute Drills (Optional)
-- [ ] Read 1 Nakama doc page  
-- [ ] Write 1 tiny test RPC or hook  
-- [ ] Review 1 log/metric anomaly  
+- [ ] Read 1 Nakama documentation page
+- [ ] Test 1 new Nakama API or feature
+- [ ] Write 1 small test or example
+- [ ] Review 1 concept or architecture decision
 
 ---
 
 ## Common Pitfalls & Tips
-- [ ] Match Nakama + Go build versions  
-- [ ] Always validate client payloads  
-- [ ] Use Storage versioning  
-- [ ] Keep match state minimal  
-- [ ] Prefer server-authoritative logic  
+- [ ] Start with simple examples before complex features
+- [ ] Test Nakama features in isolation first
+- [ ] Use Nakama's built-in features when possible
+- [ ] Plan for external services early
+- [ ] Keep match state simple and minimal
+- [ ] Always validate client inputs
+- [ ] Test reconnection scenarios thoroughly
 
 ---
 
 ## Reference Map
 - [ ] [Official Docs](https://heroiclabs.com/docs)  
+- [ ] [Getting Started](https://heroiclabs.com/docs/nakama/getting-started/)  
+- [ ] [Runtime Code Basics](https://heroiclabs.com/docs/nakama/concepts/runtime-code-basics/)  
+- [ ] [Storage API](https://heroiclabs.com/docs/nakama/concepts/storage/)  
+- [ ] [Matches & Matchmaker](https://heroiclabs.com/docs/nakama/concepts/matches/)  
 - [ ] [Go Runtime Examples](https://github.com/heroiclabs/nakama-common)  
-- [ ] [Client SDKs](https://heroiclabs.com/docs/nakama/concepts/client-libraries/)  
-- [ ] [Console & Admin](https://heroiclabs.com/docs/nakama/console/)  
-- [ ] [Monitoring](https://heroiclabs.com/docs/nakama/operations/monitoring/)  
 
 ---
 
-## What to Learn Next
-- [ ] Advanced match loops: lockstep, rollback, ECS  
-- [ ] Anti-cheat with server replay verification  
-- [ ] Multi-region matchmaking + latency strategies  
-- [ ] LiveOps: events, A/B tests, feature flags  
+## What to Learn Next (Future Versions)
+- [ ] Advanced MMR algorithms and ELO systems
+- [ ] Anti-cheat and security features
+- [ ] Multi-region deployment strategies
+- [ ] Advanced analytics and machine learning
+- [ ] GameLift integration for server allocation
+- [ ] Advanced pool management algorithms
