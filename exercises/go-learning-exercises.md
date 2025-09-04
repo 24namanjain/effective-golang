@@ -9,7 +9,7 @@
 ### Basic Syntax & Control Flow
 - [x] **Hello World Variations** - Create different versions of "Hello World" using various Go features. Practice with fmt.Println, fmt.Printf, fmt.Sprintf, string concatenation with +, string formatting with %s, %d, %f, use variables with var and := declarations, create constants with const, use different data types (string, int, float64), and implement a function that returns a greeting string.
 
-- [ ] **Number Guessing Game** - Build a simple CLI game with loops and conditionals. Use fmt.Scanf or bufio.NewReader for user input, implement for loops (both traditional and range-based), use if/else statements, use switch statements, generate random numbers with math/rand, use time.Now().UnixNano() for seeding, implement break and continue statements, use strconv.Atoi for string-to-int conversion, and handle invalid input gracefully.
+- [x] **Number Guessing Game** - Build a simple CLI game with loops and conditionals. Use fmt.Scanf or bufio.NewReader for user input, implement for loops (both traditional and range-based), use if/else statements, use switch statements, generate random numbers with math/rand, use time.Now().UnixNano() for seeding, implement break and continue statements, use strconv.Atoi for string-to-int conversion, and handle invalid input gracefully.
 
 - [ ] **Temperature Converter** - Convert between Celsius, Fahrenheit, and Kelvin with user input. Use fmt.Scanf for input, implement multiple functions for different conversions, use float64 for precise calculations, use math package functions, implement input validation, use switch statements for conversion types, format output with fmt.Printf, handle division by zero, and create a menu-driven interface.
 
