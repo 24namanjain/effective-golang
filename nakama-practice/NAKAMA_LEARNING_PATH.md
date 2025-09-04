@@ -7,18 +7,18 @@
 ---
 
 ## Phase 0 — Environment Setup (Day 0)
-- [ ] Install: Docker Desktop, Go (or Node), REST client, WebSocket client  
-- [ ] Clone starter repo  
-- [ ] Start Nakama + Postgres via docker-compose  
-- [ ] Verify health (`/healthz`, Console)  
+- [x] Install: Docker Desktop, Go (or Node), REST client, WebSocket client  
+- [x] Clone starter repo  
+- [x] Start Nakama + Postgres via docker-compose  
+- [x] Verify health (`/healthz`, Console)  
 
 **Milestone:** Nakama + Postgres run locally, logs visible, console accessible.  
 
 ---
 
 ## Phase 1 — Core Mental Model (Day 1)
-- [ ] Understand Nakama as a backend (not a game engine)  
-- [ ] Learn building blocks: RPCs, Matches, Matchmaker, Storage, Leaderboards, Social, Realtime Socket  
+- [x] Understand Nakama as a backend (not a game engine)  
+- [x] Learn building blocks: RPCs, Matches, Matchmaker, Storage, Leaderboards, Social, Realtime Socket  
 
 **Milestone:** Map Mini Battle Arena features → Nakama primitives.  
 
