@@ -40,7 +40,7 @@ check-prereqs:
 	@echo "🔍 Checking prerequisites..."
 	@command -v go >/dev/null 2>&1 || { echo "❌ Go is not installed. Please install Go 1.21+"; exit 1; }
 	@command -v docker >/dev/null 2>&1 || { echo "⚠️  Docker is not installed. Docker Compose features will not work."; }
-	@if command -v docker-compose >/dev/null 2>&1; then \
+	@if command -v docker compose >/dev/null 2>&1; then \
 		echo "✅ Docker Compose found"; \
 	elif command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then \
 		echo "✅ Docker Compose (v2) found"; \
@@ -134,12 +134,12 @@ clean:
 # Docker commands
 docker-up:
 	@echo "🐳 Starting Grafana stack..."
-	@if command -v docker-compose >/dev/null 2>&1; then \
-		docker-compose up -d; \
+	@if command -v docker compose >/dev/null 2>&1; then \
+		docker compose up -d; \
 	elif command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then \
 		docker compose up -d; \
 	else \
-		echo "❌ Neither docker-compose nor docker compose found. Please install Docker Compose."; \
+		echo "❌ Neither docker compose nor docker compose found. Please install Docker Compose."; \
 		exit 1; \
 	fi
 	@echo "✅ Grafana stack started"
@@ -149,12 +149,12 @@ docker-up:
 
 docker-up-simple:
 	@echo "🐳 Starting simple Grafana stack (without custom exporter)..."
-	@if command -v docker-compose >/dev/null 2>&1; then \
-		docker-compose -f docker-compose.simple.yml up -d; \
+	@if command -v docker compose >/dev/null 2>&1; then \
+		docker compose -f docker compose.simple.yml up -d; \
 	elif command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then \
-		docker compose -f docker-compose.simple.yml up -d; \
+		docker compose -f docker compose.simple.yml up -d; \
 	else \
-		echo "❌ Neither docker-compose nor docker compose found. Please install Docker Compose."; \
+		echo "❌ Neither docker compose nor docker compose found. Please install Docker Compose."; \
 		exit 1; \
 	fi
 	@echo "✅ Simple Grafana stack started"
@@ -164,24 +164,24 @@ docker-up-simple:
 
 docker-down:
 	@echo "🐳 Stopping Grafana stack..."
-	@if command -v docker-compose >/dev/null 2>&1; then \
-		docker-compose down; \
+	@if command -v docker compose >/dev/null 2>&1; then \
+		docker compose down; \
 	elif command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then \
 		docker compose down; \
 	else \
-		echo "❌ Neither docker-compose nor docker compose found."; \
+		echo "❌ Neither docker compose nor docker compose found."; \
 		exit 1; \
 	fi
 	@echo "✅ Grafana stack stopped"
 
 docker-down-simple:
 	@echo "🐳 Stopping simple Grafana stack..."
-	@if command -v docker-compose >/dev/null 2>&1; then \
-		docker-compose -f docker-compose.simple.yml down; \
+	@if command -v docker compose >/dev/null 2>&1; then \
+		docker compose -f docker compose.simple.yml down; \
 	elif command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then \
-		docker compose -f docker-compose.simple.yml down; \
+		docker compose -f docker compose.simple.yml down; \
 	else \
-		echo "❌ Neither docker-compose nor docker compose found."; \
+		echo "❌ Neither docker compose nor docker compose found."; \
 		exit 1; \
 	fi
 	@echo "✅ Simple Grafana stack stopped"
@@ -207,8 +207,8 @@ info:
 	@echo "Architecture: $(shell uname -m)"
 	@echo "OS: $(shell uname -s)"
 	@echo "Docker: $(shell docker --version 2>/dev/null || echo 'Not installed')"
-	@if command -v docker-compose >/dev/null 2>&1; then \
-		echo "Docker Compose: $(shell docker-compose --version)"; \
+	@if command -v docker compose >/dev/null 2>&1; then \
+		echo "Docker Compose: $(shell docker compose --version)"; \
 	elif command -v docker >/dev/null 2>&1 && docker compose version >/dev/null 2>&1; then \
 		echo "Docker Compose: $(shell docker compose version)"; \
 	else \
