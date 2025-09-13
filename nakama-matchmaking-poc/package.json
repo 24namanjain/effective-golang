@@ -1,0 +1,16 @@
+{
+  "name": "nakama-matchmaking-poc",
+  "version": "1.0.0",
+  "description": "Nakama Matchmaking Proof of Concept",
+  "main": "test-client.js",
+  "scripts": {
+    "test": "node test-client.js",
+    "test-multi": "node test-multi-client.js"
+  },
+  "dependencies": {
+    "@heroiclabs/nakama-js": "^2.7.0"
+  },
+  "keywords": ["nakama", "matchmaking", "multiplayer", "game-server"],
+  "author": "",
+  "license": "MIT"
+}
