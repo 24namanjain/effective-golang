@@ -1,6 +1,6 @@
 module matchmaking-poc
 
-go 1.21
+go 1.24
 
 require github.com/heroiclabs/nakama-common v1.31.0
 

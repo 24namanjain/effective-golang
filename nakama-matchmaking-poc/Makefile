@@ -9,7 +9,7 @@ help: ## Show this help message
 
 build: ## Build the Go module
 	@echo "🔨 Building Go module..."
-	docker run --rm -v $(PWD)/modules:/workspace -w /workspace golang:1.21 bash -c "go mod tidy && go build -buildmode=plugin -o main.so main.go"
+	docker run --rm -v $(PWD)/modules:/workspace -w /workspace golang:1.24 bash -c "go mod tidy && go build -buildmode=plugin -o main.so main.go"
 	@echo "✅ Go module built successfully"
 
 install: ## Install Node.js dependencies
