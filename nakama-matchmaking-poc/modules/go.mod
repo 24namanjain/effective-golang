@@ -1,7 +1,9 @@
 module matchmaking-poc
 
-go 1.24
+go 1.24.5
 
-require github.com/heroiclabs/nakama-common v1.31.0
+toolchain go1.24.6
 
-require google.golang.org/protobuf v1.31.0 // indirect
+require github.com/heroiclabs/nakama-common v1.40.0
+
+require google.golang.org/protobuf v1.36.9 // indirect
